@@ -1,17 +1,25 @@
 package passhash
 
-import "testing"
+import (
+	"testing"
+)
 
 func printError(e string, r string, t *testing.T) {
 	t.Errorf("\nExpected: %s\nReceived: %s", e, r)
 }
 
-func TestSayHi(t *testing.T) {
-	expected := "Hello Brett!"
+func TestGenerateFromPassword(t *testing.T) {
+	password := "a password!#%"
+	hash, err := generateFromPassword(password)
+	if err != nil {
+		t.Error(err)
+	}
 
-	response := sayHi("Brett")
-
-	if response != expected {
-		printError(expected, response, t)
+	result, err := verifyPassword(password, hash)
+	if err != nil {
+		t.Error(err)
+	}
+	if !result {
+		printError("true", "false", t)
 	}
 }
