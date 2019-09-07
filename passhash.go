@@ -26,7 +26,7 @@ var (
 
 var p = params{memory: 64 * 1024, iterations: 3, parallelism: 2, saltLength: 16, keyLength: 32}
 
-func verifyPassword(password string, encodedHash string) (match bool, err error) {
+func VerifyPassword(password string, encodedHash string) (match bool, err error) {
 	p, salt, hash, err := decodeHash(encodedHash)
 	if err != nil {
 		return false, err
@@ -40,7 +40,7 @@ func verifyPassword(password string, encodedHash string) (match bool, err error)
 	return false, nil
 }
 
-func generateFromPassword(password string) (encodedHash string, err error) {
+func GenerateFromPassword(password string) (encodedHash string, err error) {
 	salt, err := generateRandomBytes(p.saltLength)
 	if err != nil {
 		return "", err

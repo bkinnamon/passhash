@@ -10,12 +10,12 @@ func printError(e string, r string, t *testing.T) {
 
 func TestGenerateFromPassword(t *testing.T) {
 	password := "a password!#%"
-	hash, err := generateFromPassword(password)
+	hash, err := GenerateFromPassword(password)
 	if err != nil {
 		t.Error(err)
 	}
 
-	result, err := verifyPassword(password, hash)
+	result, err := VerifyPassword(password, hash)
 	if err != nil {
 		t.Error(err)
 	}
